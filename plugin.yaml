@@ -1,0 +1,36 @@
+name: "@kalo-build/plugin-morpherepo-go"
+displayName: "MorpheRepo Go"
+description: "Generates Go repository interfaces from MorpheRepo data access contract definitions. Creates typed Go interfaces with methods for each configured operation and identifier."
+version: "1.0.0"
+
+input:
+  format: "KA:MR1:YAML1"
+  description: "MorpheRepo YAML contract files"
+  suggestedStore:
+    name: "KA_RE_YAML"
+    type: "localFileSystem"
+    path: "./morphe/repo"
+
+output:
+  format: "KA:MR1:GO1"
+  description: "Go repository interface files"
+  suggestedStore:
+    name: "KA_RE_GO"
+    type: "localFileSystem"
+    path: "./internal/generated/repo"
+
+configSchema:
+  models:
+    type: object
+    description: "Go models package configuration"
+    properties:
+      PackagePath:
+        type: string
+        description: "Full Go import path of the models package"
+  repo:
+    type: object
+    description: "Go repository package configuration"
+    properties:
+      PackagePath:
+        type: string
+        description: "Full Go import path of the generated repository package"
